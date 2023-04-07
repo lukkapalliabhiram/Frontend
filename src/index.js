@@ -5,7 +5,10 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import { GOOGLE_CLIENT_ID } from './keys'
+import { disableReactDevTools } from '@fvilers/disable-react-devtools';
 
+
+if (process.env.NODE_NEV === 'production') disableReactDevTools()
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
