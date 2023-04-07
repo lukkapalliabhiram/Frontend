@@ -1,7 +1,7 @@
 const myVariables = {
   server_URL: 'https://backend-4gbl.onrender.com',    
-  GOOGLE_CLIENT_ID: '538347350932-g13bkdbe6lkmcju1l3a716m4ims42o0j.apps.googleusercontent.com',
-  GOOGLE_CLIENT_SECRET: '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',
+  GOOGLE_CLIENT_ID: '706328826586-satpa1s5qq0c9foibajkbusimcgspre7.apps.googleusercontent.com',
+  GOOGLE_CLIENT_SECRET: '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',
 };
 
 export const { server_URL, GOOGLE_CLIENT_ID} = myVariables;
