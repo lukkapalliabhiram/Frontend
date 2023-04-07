@@ -1,0 +1,504 @@
+.filter-search {
+  background-color: black;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.radio {
+  margin-bottom: 10px;
+  display: inline-block;
+  position: relative;
+  padding-left: 35px;
+  cursor: pointer;
+  font-size: 16px;
+  user-select: none;
+}
+
+.radio input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.radio span {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  border: 2px solid #ccc;
+  border-radius: 50%;
+}
+
+.radio:hover input~span {
+  background-color: #ccc;
+}
+
+.radio input:checked~span {
+  background-color: #2196f3;
+}
+
+.radio span:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.radio input:checked~span:after {
+  display: block;
+}
+
+.radio .checkmark:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  transform: rotate(45deg);
+}
+
+.radio label {
+  display: inline;
+  font-size: 1rem;
+  margin-left: 5px;
+}
+
+
+input[type="radio"] {
+  background-color: white;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: 2px solid #888;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  outline: none;
+  transition: border-color 0.2s ease-in-out;
+}
+
+input[type="radio"]:checked {
+  background-color: red;
+  border-color: #4CAF50;
+}
+
+input[type="radio"]:hover {
+  border-color: #555;
+}
+
+label {
+  display: flex;
+  align-items: center;
+}
+
+
+.filter-search h2 {
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.filter-search label {
+  color: white;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.filter-search button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  border-radius: 4px;
+  background-color: #2196F3;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-book-online {
+  margin-top: 20px;
+  padding: 10px 20px;
+  border-radius: 4px;
+  background-color: #2196F3;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-book-online:hover {
+  background-color: #0D47A1;
+}
+
+.filter-search button:hover {
+  background-color: #0D47A1;
+}
+
+.filter-search .search-group {
+  margin-top: 20px;
+}
+
+.filter-search .form-group {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.filter-search .form-group label {
+  margin-right: 10px;
+}
+
+.filter-search .form-group input[type="radio"] {
+  margin-right: 5px;
+}
+
+.filter-search ul {
+  padding: 0;
+}
+
+.filter-search li {
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 10px;
+  margin-bottom: 10px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.filter-search li:hover {
+  background-color: #f2f2f2;
+}
+
+.filter-search li img {
+  max-width: 100%;
+  height: auto;
+  margin-top: 10px;
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+}
+
+.filter-search h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.filter-search p {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.search-results {
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 20px;
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-gap: 20px;
+  align-items: center;
+}
+
+.search-results li {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 10px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.search-results li:hover {
+  background-color: #f2f2f2;
+}
+
+.search-results li img {
+  max-width: 100%;
+  height: auto;
+  margin-top: 10px;
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+}
+
+.search-results h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.search-results p {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.filter-search .image-circle {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 10px;
+  background-color: #fff;
+  border-radius: 50%;
+  overflow: hidden;
+  width: 50px;
+  height: 50px;
+}
+
+.filter-search .image-circle img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+}
+
+.search-results {
+  background-color: black;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 20px;
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.search-results li {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 10px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  flex-basis: calc(50% - 10px);
+  margin-bottom: 20px;
+}
+
+@media screen and (max-width: 768px) {
+  .search-results li {
+    flex-basis: calc(100% - 20px);
+  }
+}
+
+.filter-search ul {
+  padding: 0;
+}
+
+.filter-search li {
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 10px;
+  margin-bottom: 10px;
+  transition: all 0.3s ease;
+  display: flex;
+}
+
+.search-results li {
+  position: relative;
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 10px;
+  margin-bottom: 10px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.search-results img {
+  max-width: 100%;
+  height: auto;
+  margin-top: 10px;
+}
+
+.search-results .circle-img {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.search-results .circle-img img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 50%;
+  display: block;
+}
+
+.star-ratings {
+  color: gold;
+}
+
+.star-ratings i {
+  font-size: 20px;
+  margin-right: 5px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+.booking-page {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 20px;
+  font-size: 18px;
+}
+
+.venue-details {
+  flex-basis: 50%;
+  margin-right: 20px;
+}
+
+.venue-details h2 {
+  font-size: 30px;
+  margin-bottom: 10px;
+}
+
+.venue-details img {
+  max-width: 100%;
+  margin-top: 10px;
+}
+
+.booking-form {
+  flex-basis: 40%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.booking-form h3 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.booking-form select {
+  font-size: 18px;
+  margin-bottom: 20px;
+  padding: 10px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+}
+
+.booking-form button {
+  font-size: 20px;
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.booking-form button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+  .booking-page {
+    flex-direction: column;
+  }
+
+  .venue-details,
+  .booking-form {
+    flex-basis: 100%;
+    margin-right: 0;
+  }
+}
+.booking-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+}
+
+.booking-page h2 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+.booking-page .venue-details {
+  color: white;
+  background-color: black;
+  display: inline-grid;
+  align-items: center;
+  width: 80%;
+  margin-bottom: 2rem;
+  justify-content: center;
+}
+.booking-page .venue-details div {
+  margin-bottom: 1rem;
+}
+
+.booking-page .venue-details img {
+  width: 100%;
+  max-width: 500px;
+  margin-top: 1rem;
+}
+
+.booking-page form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 100px;
+}
+
+.booking-page form h3 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+.booking-page form select {
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 0.25rem;
+}
+
+.booking-page form button {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 0.25rem;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+}
+
+.booking-page form button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
