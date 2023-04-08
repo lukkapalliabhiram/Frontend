@@ -6,11 +6,30 @@ function EditProfile({ user, onSave, onClose }) {
   const [lastName, setLastName] = useState(user.lname);
   const [username, setUsername] = useState(user.fname);
   const [email, setEmail] = useState(user.email);
+  const BASE_URL = "https://backend-4gbl.onrender.com";
   const [mobileNumber, setMobileNumber] = useState(user.mobileNumber);
 
-  const handleSave = () => {
-    onSave({ firstName, lastName, username, email, mobileNumber });
+  const handleSave = async () => {
+    try {
+      const response = await fetch(`${BASE_URL}/api/users/update/${user.email}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ firstName, lastName, username, email, mobileNumber }),
+      });
+  
+      const result = await response.json();
+      if (result.success) {
+        onSave({ firstName, lastName, username, email, mobileNumber });
+      } else {
+        console.error('Error updating user profile:', result.error);
+      }
+    } catch (error) {
+      console.error('Error updating user profile:', error);
+    }
   };
+  
 
   return (
     <div className="edit-profile1">

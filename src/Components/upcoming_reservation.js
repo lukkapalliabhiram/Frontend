@@ -189,7 +189,7 @@ function UpcomingReservations(user) {
           <ul>
             {upcomingEventReservations.map((reservation, index) => (
               <li key={index}>
-                <p>{reservation.eventDetails.playerSportActivity}</p>
+                <h4>{reservation.eventDetails.playerSportActivity}</h4>
                 <p>{reservation.eventDetails.date?.split('T')[0]} at {reservation.eventDetails?.date?.split('T')[0]}</p>
                 <button onClick={() => handleReservationClick(reservation)}>View Details</button>
                 <button onClick={() => cancelReservation(reservation._id)}>Cancel Reservation</button>           
@@ -200,7 +200,7 @@ function UpcomingReservations(user) {
       )}
       {renderReservationDetails()}
       {reservations.length === 0 && (
-        <p>No reservations to display.</p>
+        <p style={{color: 'white'}}>No reservations to display.</p>
       )}
     </div>
   );

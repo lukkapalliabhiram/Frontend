@@ -21,7 +21,7 @@ const initialSearchValues = {
 };
 
 const FilterSearch = ({ user }) => {
-  
+
   const [searchValues, setSearchValues] = useState(initialSearchValues);
   const navigate = useNavigate();
   const [searchCategory, setSearchCategory] = useState("");
@@ -31,17 +31,45 @@ const FilterSearch = ({ user }) => {
   const [data, setData] = useState([]);
   const [searchResults, setSearchResults] = useState([]);
 
+  const isSameOrAfter = (dateA, dateB) => {
+      return (
+        dateA.getFullYear() > dateB.getFullYear() ||
+        (dateA.getFullYear() === dateB.getFullYear() && dateA.getMonth() > dateB.getMonth()) ||
+        (dateA.getFullYear() === dateB.getFullYear() &&
+          dateA.getMonth() === dateB.getMonth() &&
+          dateA.getDate() >= dateB.getDate())
+      );
+    };
+  
   const onSearch = (searchValues, category) => {
+    const currentDate = new Date();
+    currentDate.setHours(0, 0, 0, 0); // Set time to 00:00:00 to compare only the date part
+  
+    const isSameOrAfter = (dateA, dateB) => {
+      return (
+        dateA.getFullYear() > dateB.getFullYear() ||
+        (dateA.getFullYear() === dateB.getFullYear() && dateA.getMonth() > dateB.getMonth()) ||
+        (dateA.getFullYear() === dateB.getFullYear() &&
+          dateA.getMonth() === dateB.getMonth() &&
+          dateA.getDate() >= dateB.getDate())
+      );
+    };
+  
     const filteredData = data.filter((item) => {
+      const eventDate = new Date(item.date);
+      const isUpcoming = isSameOrAfter(eventDate, currentDate);
+  
       switch (category) {
         case "venues":
           return (
+            isUpcoming &&
             item.sportName === searchValues.sportName &&
             item.venueName === searchValues.venueName &&
             item.location === searchValues.location
           );
         case "activities":
           return (
+            isUpcoming &&
             item.activityName === searchValues.activityName &&
             item.ageRange === searchValues.ageRange &&
             item.cost === searchValues.cost &&
@@ -49,6 +77,7 @@ const FilterSearch = ({ user }) => {
           );
         case "players":
           return (
+            isUpcoming &&
             item.playerSportActivity === searchValues.playerSportActivity &&
             item.playerGender === searchValues.playerGender &&
             item.playerAgeRange === searchValues.playerAgeRange &&
@@ -59,17 +88,25 @@ const FilterSearch = ({ user }) => {
           return true;
       }
     });
+  
     setSearchResults(filteredData);
   };
 
-
   useEffect(() => {
-    fetchVenues().then((venues) => setData(venues));
-    fetchActivities().then((activities) => setData((prevData) => [...prevData, ...activities]));
-    fetchPlayers().then((players) => setData((prevData) => [...prevData, ...players]));
-    
+    const currentDate = new Date();
+  
+    const filterUpcomingEvents = (events) => {
+      return events.filter((event) => {
+        const eventDate = new Date(event.date);
+        return isSameOrAfter(eventDate, currentDate);
+      });
+    };
+  
+    fetchVenues().then((venues) => setData(filterUpcomingEvents(venues)));
+    fetchActivities().then((activities) => setData((prevData) => [...prevData, ...filterUpcomingEvents(activities)]));
+    fetchPlayers().then((players) => setData((prevData) => [...prevData, ...filterUpcomingEvents(players)]));
+  
   }, []);
-
 
   const handleSearchChange = (event) => {
     const { name, value } = event.target;
@@ -111,7 +148,7 @@ const FilterSearch = ({ user }) => {
           return (
             (!searchValues.sportName || item.sportName === searchValues.sportName) &&
             (!searchValues.venueName || item.venueName === searchValues.venueName) &&
-            (!searchValues.location || item.location === searchValues.location)&&
+            (!searchValues.location || item.location === searchValues.location) &&
             (!searchValues.cost || item.cost === searchValues.cost)
           );
         case "activities":
@@ -136,9 +173,6 @@ const FilterSearch = ({ user }) => {
     console.log("filteredData", filteredData);
     return filteredData;
   };
-
-
-
 
   const renderFilterOption = (filter, label) => {
     const counts = getFilterCounts(filter);
@@ -333,7 +367,7 @@ const FilterSearch = ({ user }) => {
                   <>
                     <div><strong>Venue Name:</strong> {item.venueName}</div>
                     <div><strong>Date:</strong> {item?.date?.split('T')[0]}</div>
-          
+
                     <div><strong>Location:</strong> {item.location}</div>
                     <div><strong>Sport:</strong> {item.sportName}</div>
                     <div><strong>Description:</strong> {item.description}</div>

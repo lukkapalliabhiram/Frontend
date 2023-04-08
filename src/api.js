@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "https://backend-4gbl.onrender.com";
+const BASE_URL = "http://localhost:3500";
 
 export const fetchVenues = async () => {
   const response = await axios.get(`${BASE_URL}/venues`);
@@ -96,3 +96,19 @@ export async function cancelReservationForUser(userEmail, reservationId) {
   }
 }
 
+
+export async function updateReservationRating(reservationId, rating) {
+  const response = await fetch(`${BASE_URL}/api/reservation/rating/${reservationId}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ rating }),
+  });
+
+  if (!response.ok) {
+    throw new Error('Error updating reservation rating');
+  }
+
+  return await response.json();
+}

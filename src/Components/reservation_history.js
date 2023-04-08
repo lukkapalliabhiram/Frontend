@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import "../App.css";
 import { fetchReservationsForUser } from "../api";
+import { updateReservationRating } from "../api";
 
 function Reservation(user) {
   const [ratings, setRatings] = useState({}); // Object to store ratings
@@ -28,12 +29,20 @@ function Reservation(user) {
   };
 
 
-  const handleRatingChange = (id, rating) => {
-    setRatings({
-      ...ratings,
-      [id]: rating // Update ratings object with new rating
-    });
-  }
+  const handleRatingChange = async (reservation, rating) => {
+    try {
+      const reservationId = reservation._id;
+      await updateReservationRating(reservationId, rating);
+      setRatings({
+        ...ratings,
+        [reservationId]: rating, // Update ratings object with new rating
+      });
+    } catch (error) {
+      console.error('Error updating rating:', error);
+    }
+  };
+  
+
 
   useEffect(() => {
     const fetchReservations = async () => {
@@ -63,12 +72,6 @@ function Reservation(user) {
     if (!selectedReservation) {
       return null;
     }
-
-    const ratingValue = selectedReservation.hasOwnProperty('venueName')
-      ? selectedReservation.rating
-      : selectedReservation.hasOwnProperty('activityName')
-        ? selectedReservation.rating
-        : null;
 
     return (
       <div className="reservation-details-popup">
@@ -102,7 +105,6 @@ function Reservation(user) {
             <div>
               <img src={selectedReservation.architecturalMapImage} alt="Map" />
             </div>
-            <p><span className="Bold">Given Ratings:</span> {selectedReservation.rating}</p>
           </>
         )}
 
@@ -124,7 +126,6 @@ function Reservation(user) {
               })()}
             </p>
             <p><strong>Cost:</strong> {selectedReservation.cost}</p>
-            <p><span className="Bold">Given Ratings:</span> {selectedReservation.rating}</p>
           </>
         )}
 
@@ -145,24 +146,7 @@ function Reservation(user) {
 
         <label>
           Rating:
-          <select
-            value={ratingValue}
-            onChange={(e) =>
-              setSelectedReservation({
-                ...selectedReservation,
-                vrating: selectedReservation.hasOwnProperty('venueName')
-                  ? e.target.value
-                  : selectedReservation.hasOwnProperty('activityName')
-                    ? null
-                    : selectedReservation.rating,
-                arating: selectedReservation.hasOwnProperty('activityName')
-                  ? e.target.value
-                  : selectedReservation.hasOwnProperty('venueName')
-                    ? null
-                    : selectedReservation.rating
-              })
-            }
-          >
+          <select value={selectedReservation.rating} onChange={(e) => handleRatingChange(selectedReservation._id, e.target.value)}>
             <option value="">--</option>
             <option value="1">1</option>
             <option value="2">2</option>
@@ -204,8 +188,10 @@ function Reservation(user) {
                 <p><span className="Bold">Ratings:</span> {reservation.eventDetails.rating}</p>
                 <label>
                   Rating:
-                  <select value={ratings[reservation.id]} onChange={(e) => handleRatingChange(index, e.target.value)}>
-                    <option value="">--</option>
+                  <select
+                    value={reservation.rating}
+                    onChange={(e) => handleRatingChange(reservation, e.target.value)}
+                  >                    <option value="">--</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -239,7 +225,10 @@ function Reservation(user) {
                 <p><span className="Bold">Ratings:</span> {reservation.eventDetails.rating}</p>
                 <label>
                   <span className="Bold">Rating:</span>
-                  <select value={ratings[reservation.id]} onChange={(e) => handleRatingChange(index, e.target.value)}>
+                  <select
+                    value={reservation.rating}
+                    onChange={(e) => handleRatingChange(reservation, e.target.value)}
+                  >
                     <option value="">--</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
@@ -259,7 +248,7 @@ function Reservation(user) {
           <ul>
             {eventReservations.map((reservation, index) => (
               <li key={index}>
-                <p>{reservation.eventDetails.playerSportActivity}</p>
+                <h4>{reservation.eventDetails.playerSportActivity}</h4>
                 <p>{reservation.eventDetails.date?.split('T')[0]} at {reservation.eventDetails?.date?.split('T')[0]}</p>
                 <button onClick={() => handleReservationClick(reservation)}>View Details</button>              </li>
             ))}
