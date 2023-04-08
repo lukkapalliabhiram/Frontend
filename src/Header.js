@@ -128,8 +128,6 @@ const Header = ({ user }) => {
                 onLogoutClick={handleLogoutClick}
               />
             </li>
-            <li><button onClick={handleLightClick}>Light theme</button></li>
-            <li><button onClick={handleDarkClick}>Dark theme</button></li>
           </ul>
         </nav>
       </header>
