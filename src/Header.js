@@ -119,6 +119,9 @@ const Header = ({ user }) => {
               <Link to="/my_reservations">My Reservations</Link>
             </li>
             <li>
+              <Link to="/chat">Chat</Link>
+            </li>
+            <li>
               <ProfileButton
                 user={user}
                 onEditProfileClick={handleEditProfileClick}

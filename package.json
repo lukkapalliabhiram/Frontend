@@ -6,6 +6,7 @@
   "dependencies": {
     "@fvilers/disable-react-devtools": "^1.3.0",
     "@react-oauth/google": "^0.9.0",
+    "@sendbird/uikit-react": "^3.4.5",
     "@stripe/react-stripe-js": "^2.1.0",
     "@stripe/stripe-js": "^1.52.0",
     "@testing-library/jest-dom": "^5.16.5",

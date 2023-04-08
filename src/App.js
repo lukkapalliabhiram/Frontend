@@ -24,6 +24,8 @@ import { useCookies } from 'react-cookie';
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import CheckoutForm from "./Components/CheckoutForm";
+import SendbirdApp from "@sendbird/uikit-react/App";
+import "@sendbird/uikit-react/dist/index.css";
 const cookies = new Cookies();
 const stripePromise = loadStripe("pk_test_51Mn4LdAFfsqlcVQEkmO8NnDi3KWVr6RJ6h225510JcZVN1RbId6WfSFOpaL19Txv8FKm1dCz6S11qnnzQCZzud0A00ArZsNo0T");
 
@@ -70,6 +72,14 @@ function App() {
         <AppRoutes clientSecret={clientSecret} options={options} data={data} />
         <Routes>
         <Route path="/filter_search" element={<FilterSearch  user={user} />} />
+        <Route path="/chat" element={<div className="App">
+            <SendbirdApp
+                // Add the two lines below.
+                appId="4D55419E-3D2A-43BB-A712-2E7B1DCF27AB"   // Specify your Sendbird application ID.
+                userId={user.email}        // Specify your user ID.
+                nickname={user.name}
+            />
+        </div>} />
         <Route path="/book_venue/:venueIndex" element={<BookingPage data={data} user={user} />} />
         <Route path="/activity_details/:activityIndex" element={<ActivityDetails data={data} />} />
         <Route path="/player_details/:playerIndex" element={<PlayerDetailsPage data={data} />} />
