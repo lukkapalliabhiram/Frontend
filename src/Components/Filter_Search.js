@@ -20,7 +20,7 @@ const initialSearchValues = {
   playerAvailability: "",
 };
 
-const FilterSearch = ({ user }) => {
+const FilterSearch = ({ user, data }) => {
 
   const [searchValues, setSearchValues] = useState(initialSearchValues);
   const navigate = useNavigate();
@@ -28,7 +28,7 @@ const FilterSearch = ({ user }) => {
   const [filteredData, setFilteredData] = useState([]);
   const [venue, setvenue] = useState("");
   const [index, setindex] = useState("");
-  const [data, setData] = useState([]);
+  // const [data, setData] = useState([]);
   const [searchResults, setSearchResults] = useState([]);
 
   const isSameOrAfter = (dateA, dateB) => {
@@ -102,9 +102,9 @@ const FilterSearch = ({ user }) => {
       });
     };
   
-    fetchVenues().then((venues) => setData(filterUpcomingEvents(venues)));
-    fetchActivities().then((activities) => setData((prevData) => [...prevData, ...filterUpcomingEvents(activities)]));
-    fetchPlayers().then((players) => setData((prevData) => [...prevData, ...filterUpcomingEvents(players)]));
+    // fetchVenues().then((venues) => setData(filterUpcomingEvents(venues)));
+    // fetchActivities().then((activities) => setData((prevData) => [...prevData, ...filterUpcomingEvents(activities)]));
+    // fetchPlayers().then((players) => setData((prevData) => [...prevData, ...filterUpcomingEvents(players)]));
   
   }, []);
 

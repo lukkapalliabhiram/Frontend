@@ -71,7 +71,7 @@ function App() {
       <div className="App">
         <AppRoutes clientSecret={clientSecret} options={options} data={data} />
         <Routes>
-        <Route path="/filter_search" element={<FilterSearch  user={user} />} />
+        <Route path="/filter_search" element={<FilterSearch  user={user} data={data}/>} />
         <Route path="/chat" element={<div className="App">
             <SendbirdApp
                 // Add the two lines below.
