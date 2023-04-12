@@ -91,12 +91,16 @@ const Header = ({ user }) => {
     window.location.href = '/';
   };
 
-  const handleLightClick = () => {
-    setLightTheme();
-  }
+  
+  
+  
 
-  const handleDarkClick = () => {
-    setDarkTheme();
+  function toggleTheme() {
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', newTheme);
+    // Optionally, save the user's preference in local storage
+    localStorage.setItem('theme', newTheme);
   }
 
 
@@ -127,6 +131,9 @@ const Header = ({ user }) => {
                 onEditProfileClick={handleEditProfileClick}
                 onLogoutClick={handleLogoutClick}
               />
+            </li>
+            <li className="dark-mode">
+              <button onClick={toggleTheme}>⛅</button>
             </li>
           </ul>
         </nav>

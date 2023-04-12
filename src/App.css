@@ -4,7 +4,21 @@
   box-sizing: border-box;
 }
 
-h2.p{
+:root {
+  --text-color: #333;
+  --background-color: #ffededa6;
+  --link-color: #007bff;
+  /* Add other variables as needed */
+}
+
+[data-theme="dark"] {
+  --text-color: #eee;
+  --background-color: #0000009c;
+  --link-color: #33aaff;
+  /* Update other variables as needed */
+}
+
+h2.p {
   border-bottom: 0;
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
@@ -15,7 +29,7 @@ body {
   font-family: 'Segoe UI', sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #f2f2f2;
+  background-color: var(--background-color);
 }
 
 /* Header */
@@ -24,43 +38,43 @@ body {
 @import url(https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200&display=swap);
 
 
-.wrapper{
+.wrapper {
   box-sizing: border-box;
   font-family: 'Montserrat';
 }
-.wrapper html,body{
-  /* display: grid;
-  height: 100%;
-  width: 100%;
-  place-items: center;
-  background: -webkit-linear-gradient(left, #003366,#004080,#0059b3
-, #0073e6); */
-  /* background-color:rgb(52, 86, 130);*/
+
+.wrapper html,
+body {
   background: url("./iustadium.jpeg");
   background-size: cover;
 }
-::selection{
+
+::selection {
   background: #1a75ff;
   color: #fff;
 }
-.wrapper{
+
+.wrapper {
   background: #fff;
   padding: 30px;
   border-radius: 15px;
-  box-shadow: 0px 15px 20px rgba(0,0,0,0.1);
+  box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.1);
 }
-.wrapper .title-text{
+
+.wrapper .title-text {
   display: flex;
   width: 200%;
 }
-.wrapper .title{
+
+.wrapper .title {
   width: 50%;
   font-size: 35px;
   font-weight: 600;
   text-align: center;
-  transition: all 0.6s cubic-bezier(0.68,-0.55,0.265,1.55);
+  transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
-.wrapper .slide-controls{
+
+.wrapper .slide-controls {
   position: relative;
   display: flex;
   height: 50px;
@@ -71,7 +85,8 @@ body {
   border: 1px solid lightgrey;
   border-radius: 15px;
 }
-.wrapper .slide-controls .slide{
+
+.wrapper .slide-controls .slide {
   height: 100%;
   width: 100%;
   color: #fff;
@@ -83,59 +98,71 @@ body {
   z-index: 1;
   transition: all 0.6s ease;
 }
-.slide-controls label.signup{
+
+.slide-controls label.signup {
   color: #000;
 }
-.wrapper .slide-controls .slider-tab{
+
+.wrapper .slide-controls .slider-tab {
   position: absolute;
   height: 100%;
   width: 50%;
   left: 0;
   z-index: 0;
   border-radius: 15px;
-  background: -webkit-linear-gradient(left,#003366,#004080,#0059b3
-, #0073e6);
-  transition: all 0.6s cubic-bezier(0.68,-0.55,0.265,1.55);
+  background: -webkit-linear-gradient(left, #003366, #004080, #0059b3, #0073e6);
+  transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
-.wrapper input[type="radio"]{
+
+.wrapper input[type="radio"] {
   display: none;
 }
-.wrapper #signup:checked ~ .slider-tab{
+
+.wrapper #signup:checked~.slider-tab {
   left: 50%;
 }
-.wrapper #signup:checked ~ label.signup{
+
+.wrapper #signup:checked~label.signup {
   color: #000000;
   cursor: default;
   user-select: none;
 }
-.wrapper #signup:checked ~ label.login{
+
+.wrapper #signup:checked~label.login {
   color: #ffffff;
 }
-.wrapper #login:checked ~ label.signup{
+
+.wrapper #login:checked~label.signup {
   color: #000;
 }
-.wrapper #login:checked ~ label.login{
+
+.wrapper #login:checked~label.login {
   cursor: default;
   user-select: none;
 }
-.wrapper .form-container{
+
+.wrapper .form-container {
   width: 100%;
   overflow: hidden;
 }
-.wrapper .form-container .form-inner{
+
+.wrapper .form-container .form-inner {
   display: flex;
   width: 200%;
 }
-.wrapper .form-container .form-inner form{
+
+.wrapper .form-container .form-inner form {
   width: 50%;
-  transition: all 0.6s cubic-bezier(0.68,-0.55,0.265,1.55);
+  transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
-.wrapper .form-inner form .field{
+
+.wrapper .form-inner form .field {
   height: 50px;
   width: 100%;
   margin-top: 20px;
 }
-.wrapper .form-inner form .field input{
+
+.wrapper .form-inner form .field input {
   height: 100%;
   width: 100%;
   outline: none;
@@ -146,54 +173,65 @@ body {
   font-size: 17px;
   transition: all 0.3s ease;
 }
-.wrapper .form-inner form .field input:focus{
+
+.wrapper .form-inner form .field input:focus {
   border-color: #1a75ff;
   /* box-shadow: inset 0 0 3px #fb6aae; */
 }
-.wrapper .form-inner form .field input::placeholder{
+
+.wrapper .form-inner form .field input::placeholder {
   color: #999;
   transition: all 0.3s ease;
 }
-.wrapper form .field input:focus::placeholder{
+
+.wrapper form .field input:focus::placeholder {
   color: #1a75ff;
 }
-.wrapper .form-inner form .pass-link{
+
+.wrapper .form-inner form .pass-link {
   margin-top: 5px;
 }
-.wrapper .form-inner form .signup-link{
+
+.wrapper .form-inner form .signup-link {
   text-align: center;
   margin-top: 20px;
 }
+
 .wrapper .form-inner form .pass-link a,
-.form-inner form .signup-link a{
+.form-inner form .signup-link a {
   color: #1a75ff;
   text-decoration: none;
 }
+
 .wrapper .form-inner form .pass-link a:hover,
-.form-inner form .signup-link a:hover{
+.form-inner form .signup-link a:hover {
   text-decoration: underline;
 }
-.wrapper form .btn{
+
+.wrapper form .btn {
   height: 50px;
   width: 100%;
   border-radius: 15px;
   position: relative;
   overflow: hidden;
 }
-.wrapper form .btn .btn-layer{
+
+.wrapper form .btn .btn-layer {
   height: 100%;
   width: 300%;
   position: absolute;
   left: -100%;
-  background: -webkit-linear-gradient(right,#003366,#004080,#0059b3
-, #0073e6);
+  background: -webkit-linear-gradient(right, #003366, #004080, #0059b3, #0073e6);
   border-radius: 15px;
-  transition: all 0.4s ease;;
+  transition: all 0.4s ease;
+  ;
 }
-.wrapper form .btn:hover .btn-layer{
+
+.wrapper form .btn:hover .btn-layer {
   left: 0;
 }
-.wrapper form .btn input[type="submit"]{
+
+.wrapper form .btn input[type="submit"] {
   height: 100%;
   width: 100%;
   z-index: 1;
@@ -216,7 +254,7 @@ body {
 @import url(https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200&display=swap);
 
 
- 
+
 .wrapper.wrap {
   width: 100%;
   overflow: hidden;
@@ -224,7 +262,7 @@ body {
 
 .wrapper.wrap-inner {
   width: 300%;
-  
+
   /* css transitions */
   transition: transform 500ms cubic-bezier(1.000, 0.000, 0.000, 1.000);
   transform: translateX(0);
@@ -262,6 +300,7 @@ body {
   margin: 1;
   padding: 1rem 0;
 }
+
 .wrapper.form-wrap .inputbox {
   border: 1px solid #eaedf2;
   border-radius: 3px;
@@ -271,12 +310,17 @@ body {
   margin-bottom: 1rem;
   font-family: inherit;
 }
+
 .wrapper.form--login .form-wrap .inputbox {
   width: 88%;
 }
-.wrapper.form-wrap .name, .email, .password {
+
+.wrapper.form-wrap .name,
+.email,
+.password {
   background: #eaedf2;
 }
+
 .wrapper.form-wrap a.button {
   background: none repeat scroll 0 0 #65addd;
   border: none;
@@ -289,10 +333,12 @@ body {
   padding: 1rem 2rem;
   text-decoration: none;
 }
+
 .wrapper.form-wrap .button:hover {
-  background :rgb(13, 86, 98);
+  background: rgb(13, 86, 98);
 }
-.wrapper.form-wrap a.button > i {
+
+.wrapper.form-wrap a.button>i {
   font-size: 2rem;
 }
 
@@ -302,6 +348,7 @@ body {
   text-decoration: none;
   text-transform: uppercase;
 }
+
 .wrapper.scroll:hover {
   color: #222;
 }
@@ -311,6 +358,7 @@ body {
 .wrapper.goto-2 {
   transform: translateX(-33%);
 }
+
 .wrapper.goto-3 {
   transform: translateX(-66%);
 }
@@ -328,11 +376,13 @@ main {
   font-size: 32px;
   font-weight: bold;
   margin-bottom: 40px;
-  color: white;
+  color: var(--text-color);
 }
-.profile{
-  background-color: #000000ad;
+
+.profile {
+  background-color: var(--background-color);
 }
+
 .basic-details li {
   margin-bottom: 10px;
 }
@@ -344,7 +394,7 @@ main {
 }
 
 .reservation-history li {
-  background-color: #fff;
+  background-color: var(--background-color);
   padding: 20px;
   border-radius: 5px;
   margin-bottom: 20px;
@@ -368,7 +418,7 @@ main {
   left: 0;
   height: 100%;
   width: 100%;
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: var(--background-color);
   z-index: -1;
   transition: all 0.3s ease;
 }
@@ -386,7 +436,7 @@ main {
   margin: 0;
 }
 
-.reservation-history p .Bold{
+.reservation-history p .Bold {
   font-weight: bold;
 }
 
@@ -408,7 +458,7 @@ main {
   transform: translate(-50%, -50%);
   z-index: 999;
   padding: 20px;
-  background-color: #fff;
+  background-color: var(--background-color);
   border: 1px solid #ccc;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
@@ -418,14 +468,15 @@ main {
 }
 
 
-.reservation-details-popup > div {
-  background-color: #fff;
+.reservation-details-popup>div {
+  background-color: var(--background-color);
   padding: 20px;
   border-radius: 5px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
 }
-.reservation-details-popup h2{
-  color: #000;
+
+.reservation-details-popup h2 {
+  color: var(--text-color);
 }
 
 
@@ -436,7 +487,7 @@ main {
 }
 
 .upcoming-reservations li {
-  background-color: #fff;
+  background-color: var(--background-color);
   padding: 20px;
   border-radius: 5px;
   margin-bottom: 20px;
@@ -448,9 +499,11 @@ main {
   overflow: hidden;
   border: 2px solid;
 }
-.upcoming-reservations{
+
+.upcoming-reservations {
   padding-bottom: 30px;
 }
+
 .upcoming-reservations li:before {
   content: "";
   position: absolute;
@@ -458,7 +511,7 @@ main {
   left: 0;
   height: 100%;
   width: 100%;
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: var(--background-color);
   z-index: -1;
   transition: all 0.3s ease;
 }
@@ -497,7 +550,7 @@ main {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: var(--background-color);
   display: none;
   justify-content: center;
   align-items: center;
@@ -505,7 +558,7 @@ main {
 }
 
 .modal {
-  background-color: #fff;
+  background-color: var(--background-color);
   padding: 20px;
   border-radius: 5px;
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
@@ -552,8 +605,8 @@ main {
 }
 
 .modal-footer button {
-  background-color: #007bff;
-  color: #fff;
+  background-color: var(--background-color);
+  color: var(--text-color);
   border: none;
   padding: 10px;
   font-size: 16px;
@@ -563,162 +616,55 @@ main {
 }
 
 .modal-footer button:hover {
-  background-color: #0062cc;
+  background-color: var(--background-color);
 }
 
-@media screen and (max-width: 768px) {
-  .logo h1 {
-    font-size: 24px;
-  }
+/* Custom Styles */
 
-  nav ul li a {
-    font-size: 16px;
-  }
 
-  main {
-    margin-top: 150px;
-  }
 
-  .upcoming-reservations li {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .upcoming-reservations li:before {
-    display: none;
-  }
-
-  .modal {
-    width: 100%;
-    height: 100%;
-  }
+.upcoming-reservations li h4 {
+  margin: 0;
+  flex: 1;
 }
 
-@media screen and (max-width: 480px) {
-  .logo h1 {
-    font-size: 20px;
-  }
+.upcoming-reservations p {
+  margin: 0 10px 0 0;
+}
 
-  nav ul li a {
-    font-size: 14px;
-  }
-
-  .upcoming-reservations li h4 {
-    font-size: 18px;
-  }
-
-  .upcoming-reservations.event-search input[type="text"] {
-    width: 100%;
-    padding: 10px;
-    font-size: 16px;
-    border: 2px solid #ddd;
-    border-radius: 5px;
-    margin-bottom: 20px;
-    }
-    
-    /* Footer */
-    
-    footer {
-    text-align: center;
-    background-color: #f8f9fa;
-    padding: 10px;
-    font-size: 16px;
-    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
-    
-    bottom: 0;
-    left: 0;
-    right: 0;
-    }
-  }
-    @media screen and (max-width: 767px) {
-   
-    main {
-    margin: 150px auto 0 auto;
-    }
-    }
-    
-    /* Custom Styles */
-    
-    
-    
-    .upcoming-reservations li h4 {
-    margin: 0;
-    flex: 1;
-    }
-    
-    .upcoming-reservations p {
-    margin: 0 10px 0 0;
-    }
-    
-    .upcoming-reservations a {
-    font-weight: bold;
-    }
-    
-    
-      
-      /* Footer */
-      
-      footer {
-      text-align: center;
-      background-color: #fff;
-      padding: 10px;
-      font-size: 16px;
-      box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
-      bottom: 0;
-      left: 0;
-      right: 0;
-      }
-      
-      footer p {
-      margin: 0;
-      }
-      
-      @media (max-width: 768px) {
-    
-        
-        /* Footer */
-        
-        footer {
-        text-align: center;
-        background-color: black;
-        padding: 10px;
-        font-size: 16px;
-        box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
-        bottom: 0;
-        left: 0;
-        right: 0;
-        z-index: 100;
-        color: white;
-        }
-      }
-  h3{
-    color: white;
-  }
-
-  body {
-    background-image: url('iustadium.jpeg');
-    background-size: cover;
-  }
+.upcoming-reservations a {
+  font-weight: bold;
+}
 
 
-  :root {
-    --background-color: #ffffff; /* white */
-    --text-color: #000000; /* black */
-  }
-  
-  .light-mode {
-    --background-color: var(--background-color);
-    --text-color: var(--text-color);
-  }
-  
-  .dark-mode {
-    --background-color: #000000; /* black */
-    --text-color: #ffffff; /* white */
-  }
-  
-  body {
-    background-color: var(--background-color);
-    color: var(--text-color);
-  }
-  
-  
+
+/* Footer */
+
+footer {
+  text-align: center;
+  background-color: var(--background-color);
+  padding: 10px;
+  font-size: 16px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+footer p {
+  margin: 0;
+}
+
+h3 {
+  color: var(--text-color);
+}
+
+body {
+  background-image: url('iustadium.jpeg');
+  background-size: cover;
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+}

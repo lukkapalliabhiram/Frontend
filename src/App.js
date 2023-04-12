@@ -38,6 +38,7 @@ function App() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
+    loadTheme();
     fetchVenues().then((venues) => setData(venues));
     fetchActivities().then((activities) => setData((prevData) => [...prevData, ...activities]));
     fetchPlayers().then((players) => setData((prevData) => [...prevData, ...players]));
@@ -65,6 +66,12 @@ function App() {
     clientSecret,
     appearance,
   };
+
+  function loadTheme() {
+    const savedTheme = localStorage.getItem('theme');
+    const themeToApply = savedTheme ? savedTheme : 'light'; // Default to light mode if no preference is saved
+    document.documentElement.setAttribute('data-theme', themeToApply);
+  }
 
   return (
     <Router>
@@ -94,6 +101,7 @@ function App() {
         <Route path="/my_reservations" element={<Reservation user={user} />} />
         </Routes>
       </div>
+      
     </Router>
   );
 }
@@ -119,6 +127,7 @@ function AppRoutes(clientSecret, options, data, handleFilterSearch) {
         
       </Routes>
     </>
+
   );
 }
 
