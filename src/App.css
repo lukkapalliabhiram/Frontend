@@ -458,25 +458,27 @@ main {
   transform: translate(-50%, -50%);
   z-index: 999;
   padding: 20px;
-  background-color: var(--background-color);
+  background-color: black;
   border: 1px solid #ccc;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   max-width: 500px;
   max-height: 80vh;
   overflow-y: auto;
+  color: white;
 }
 
 
 .reservation-details-popup>div {
-  background-color: var(--background-color);
+  background-color: black;
   padding: 20px;
   border-radius: 5px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  color: white;
 }
 
-.reservation-details-popup h2 {
-  color: var(--text-color);
+.reservation-details-popup h2,h3 {
+  color: white;
 }
 
 

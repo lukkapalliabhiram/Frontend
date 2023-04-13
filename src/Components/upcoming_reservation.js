@@ -7,6 +7,7 @@ function UpcomingReservations(user) {
   const [selectedReservation, setSelectedReservation] = useState(null);
   const [reservations, setReservations] = useState([]);
   const userEmail = user.user.email;
+  
 
   const filterUpcomingReservations = (reservations) => {
     return reservations.filter((reservation) => {
@@ -192,7 +193,8 @@ function UpcomingReservations(user) {
                 <h4>{reservation.eventDetails.playerSportActivity}</h4>
                 <p>{reservation.eventDetails.date?.split('T')[0]} at {reservation.eventDetails?.date?.split('T')[0]}</p>
                 <button onClick={() => handleReservationClick(reservation)}>View Details</button>
-                <button onClick={() => cancelReservation(reservation._id)}>Cancel Reservation</button>           
+                <button onClick={() => cancelReservation(reservation._id)}>Cancel Reservation</button>
+                           
               </li>
             ))}
           </ul>
