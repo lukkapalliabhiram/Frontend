@@ -97,6 +97,31 @@ export async function cancelReservationForUser(userEmail, reservationId) {
 }
 
 
+export async function sendInvitationToFriend(userName, inviteEmail, reservationId, value) {
+  console.log(userName, inviteEmail, reservationId, value);
+  const response = await fetch(`${BASE_URL}/send-invitation`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      userName,
+      inviteEmail,
+      reservationId,
+      value,
+    }),
+  });
+
+  if (!response.ok) {
+    throw new Error(`Error sending the invitation: ${response.statusText}`);
+  }
+
+  return await response.json();
+}
+
+
+
+
 export async function updateReservationRating(reservationId, rating) {
   const response = await fetch(`${BASE_URL}/api/reservation/rating/${reservationId}`, {
     method: 'PUT',

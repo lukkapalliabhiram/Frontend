@@ -26,6 +26,9 @@ import { Elements } from "@stripe/react-stripe-js";
 import CheckoutForm from "./Components/CheckoutForm";
 import SendbirdApp from "@sendbird/uikit-react/App";
 import "@sendbird/uikit-react/dist/index.css";
+import VenueDetails from "./Components/venue_details";
+import VenueDetails2 from "./Components/venue_details2";
+import VenueDetails3 from "./Components/venue_details3";
 const cookies = new Cookies();
 const stripePromise = loadStripe("pk_test_51Mn4LdAFfsqlcVQEkmO8NnDi3KWVr6RJ6h225510JcZVN1RbId6WfSFOpaL19Txv8FKm1dCz6S11qnnzQCZzud0A00ArZsNo0T");
 
@@ -99,6 +102,9 @@ function App() {
         <Route path="/payments/:playerIndex" element={<PaymentsPage />} />
         <Route path="/confirmation/:venueIndex" element={<ConfirmationPage />} />
         <Route path="/my_reservations" element={<Reservation user={user} />} />
+        <Route path="/invitation/venue/:venueId" element={<VenueDetails />} />
+        <Route path="/invitation/activity/:venueId" element={<VenueDetails2 />} />
+        <Route path="/invitation/player/:venueId" element={<VenueDetails3 />} />
         </Routes>
       </div>
       

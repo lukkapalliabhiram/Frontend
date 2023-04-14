@@ -1,13 +1,16 @@
 import { useState, useEffect, useCallback } from "react";
 import "../App.css";
-import { fetchReservationsForUser, cancelReservationForUser } from "../api";
+import { fetchReservationsForUser, cancelReservationForUser} from "../api";
+import { sendInvitationToFriend } from "../api";
 
 
 function UpcomingReservations(user) {
   const [selectedReservation, setSelectedReservation] = useState(null);
   const [reservations, setReservations] = useState([]);
   const userEmail = user.user.email;
-  
+  const userName = user.user.name;
+  const [inviteEmail, setInviteEmail] = useState('');
+  const [showInviteForm, setShowInviteForm] = useState(false);
 
   const filterUpcomingReservations = (reservations) => {
     return reservations.filter((reservation) => {
@@ -26,7 +29,7 @@ function UpcomingReservations(user) {
     const fetchedReservations = await fetchReservationsForUser(userEmail);
     setReservations(fetchedReservations);
   }, [userEmail]);
-  
+
 
   useEffect(() => {
     fetchReservations();
@@ -44,6 +47,20 @@ function UpcomingReservations(user) {
 
   const handleReservationClick = (reservation) => {
     setSelectedReservation(reservation.eventDetails);
+  };
+
+  const sendInvitation = async (value, reservationId) => {
+    console.log(userName, inviteEmail, reservationId, value);
+    if (inviteEmail && reservationId) {
+      await sendInvitationToFriend(userName, inviteEmail, reservationId, value);
+      setInviteEmail('');
+      setShowInviteForm(false);
+    }
+  };
+  
+
+  const toggleInviteForm = () => {
+    setShowInviteForm(!showInviteForm);
   };
 
   function renderReservationDetails() {
@@ -138,7 +155,7 @@ function UpcomingReservations(user) {
           <ul>
             {upcomingVenueReservations.map((reservation, index) => (
               <li key={index}>
-                                <h4>{reservation.eventDetails.venueName}</h4>
+                <h4>{reservation.eventDetails.venueName}</h4>
                 <p>
                   {(() => {
                     if (reservation.eventDetails?.date) {
@@ -153,6 +170,19 @@ function UpcomingReservations(user) {
                 <p><span className="Bold">Ratings:</span> {reservation.eventDetails.rating}</p>
                 <button onClick={() => handleReservationClick(reservation)}>View Details</button>
                 <button onClick={() => cancelReservation(reservation._id)}>Cancel Reservation</button>
+                <button onClick={toggleInviteForm}>Invite Friend</button>
+                {showInviteForm && (
+                  <div className="invite-friend-form">
+                    <label htmlFor="inviteEmail">Friend's Email:</label>
+                    <input
+                      type="email"
+                      id="inviteEmail"
+                      value={inviteEmail}
+                      onChange={(e) => setInviteEmail(e.target.value)}
+                    />
+                    <button onClick={() => sendInvitation("event",reservation.eventDetails._id)}>Send Invitation</button>
+                  </div>
+                )}       
               </li>
             ))}
           </ul>
@@ -179,6 +209,19 @@ function UpcomingReservations(user) {
                 <p><span className="Bold">Ratings:</span> {reservation.eventDetails.rating}</p>
                 <button onClick={() => handleReservationClick(reservation)}>View Details</button>
                 <button onClick={() => cancelReservation(reservation._id)}>Cancel Reservation</button>
+                <button onClick={toggleInviteForm}>Invite Friend</button>
+                {showInviteForm && (
+                  <div className="invite-friend-form">
+                    <label htmlFor="inviteEmail">Friend's Email:</label>
+                    <input
+                      type="email"
+                      id="inviteEmail"
+                      value={inviteEmail}
+                      onChange={(e) => setInviteEmail(e.target.value)}
+                    />
+                    <button onClick={() => sendInvitation("activity",reservation.eventDetails._id)}>Send Invitation</button>
+                  </div>
+                )}       
               </li>
             ))}
           </ul>
@@ -194,7 +237,19 @@ function UpcomingReservations(user) {
                 <p>{reservation.eventDetails.date?.split('T')[0]} at {reservation.eventDetails?.date?.split('T')[0]}</p>
                 <button onClick={() => handleReservationClick(reservation)}>View Details</button>
                 <button onClick={() => cancelReservation(reservation._id)}>Cancel Reservation</button>
-                           
+                <button onClick={toggleInviteForm}>Invite Friend</button>
+                {showInviteForm && (
+                  <div className="invite-friend-form">
+                    <label htmlFor="inviteEmail">Friend's Email:</label>
+                    <input
+                      type="email"
+                      id="inviteEmail"
+                      value={inviteEmail}
+                      onChange={(e) => setInviteEmail(e.target.value)}
+                    />
+                    <button onClick={() => sendInvitation("player",reservation.eventDetails._id)}>Send Invitation</button>
+                  </div>
+                )}           
               </li>
             ))}
           </ul>
@@ -202,7 +257,7 @@ function UpcomingReservations(user) {
       )}
       {renderReservationDetails()}
       {reservations.length === 0 && (
-        <p style={{color: 'white'}}>No reservations to display.</p>
+        <p style={{ color: 'white' }}>No reservations to display.</p>
       )}
     </div>
   );
