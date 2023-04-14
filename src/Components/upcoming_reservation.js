@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import "../App.css";
-import { fetchReservationsForUser, cancelReservationForUser} from "../api";
+import { fetchReservationsForUser, cancelReservationForUser } from "../api";
 import { sendInvitationToFriend } from "../api";
 
 
@@ -9,7 +9,7 @@ function UpcomingReservations(user) {
   const [reservations, setReservations] = useState([]);
   const userEmail = user.user.email;
   const userName = user.user.name;
-  const [inviteEmail, setInviteEmail] = useState('');
+  const [inviteEmail, setInviteEmail] = useState({});
   const [showInviteForm, setShowInviteForm] = useState(false);
 
   const filterUpcomingReservations = (reservations) => {
@@ -31,6 +31,11 @@ function UpcomingReservations(user) {
   }, [userEmail]);
 
 
+  const handleInviteEmailChange = (id, value) => {
+    setInviteEmail((prevState) => ({ ...prevState, [id]: value }));
+  };
+
+
   useEffect(() => {
     fetchReservations();
   }, [fetchReservations]);
@@ -50,14 +55,14 @@ function UpcomingReservations(user) {
   };
 
   const sendInvitation = async (value, reservationId) => {
-    console.log(userName, inviteEmail, reservationId, value);
+    console.log(userName, inviteEmail[reservationId], reservationId, value);
     if (inviteEmail && reservationId) {
-      await sendInvitationToFriend(userName, inviteEmail, reservationId, value);
+      await sendInvitationToFriend(userName, inviteEmail[reservationId], reservationId, value);
       setInviteEmail('');
       setShowInviteForm(false);
     }
   };
-  
+
 
   const toggleInviteForm = () => {
     setShowInviteForm(!showInviteForm);
@@ -177,12 +182,12 @@ function UpcomingReservations(user) {
                     <input
                       type="email"
                       id="inviteEmail"
-                      value={inviteEmail}
-                      onChange={(e) => setInviteEmail(e.target.value)}
+                      value={inviteEmail[reservation.eventDetails._id] || ''}
+                      onChange={(e) => handleInviteEmailChange(reservation.eventDetails._id, e.target.value)}
                     />
-                    <button onClick={() => sendInvitation("event",reservation.eventDetails._id)}>Send Invitation</button>
+                    <button onClick={() => sendInvitation("event", reservation.eventDetails._id, inviteEmail[reservation.eventDetails._id] || '')}>Send Invitation</button>
                   </div>
-                )}       
+                )}
               </li>
             ))}
           </ul>
@@ -216,12 +221,12 @@ function UpcomingReservations(user) {
                     <input
                       type="email"
                       id="inviteEmail"
-                      value={inviteEmail}
-                      onChange={(e) => setInviteEmail(e.target.value)}
+                      value={inviteEmail[reservation.eventDetails._id] || ''}
+                      onChange={(e) => handleInviteEmailChange(reservation.eventDetails._id, e.target.value)}
                     />
-                    <button onClick={() => sendInvitation("activity",reservation.eventDetails._id)}>Send Invitation</button>
+                    <button onClick={() => sendInvitation("activity", reservation.eventDetails._id, inviteEmail[reservation.eventDetails._id] || '')}>Send Invitation</button>
                   </div>
-                )}       
+                )}
               </li>
             ))}
           </ul>
@@ -244,12 +249,13 @@ function UpcomingReservations(user) {
                     <input
                       type="email"
                       id="inviteEmail"
-                      value={inviteEmail}
-                      onChange={(e) => setInviteEmail(e.target.value)}
+                      value={inviteEmail[reservation.eventDetails._id] || ''}
+                      onChange={(e) => handleInviteEmailChange(reservation.eventDetails._id, e.target.value)}
                     />
-                    <button onClick={() => sendInvitation("player",reservation.eventDetails._id)}>Send Invitation</button>
+
+                    <button onClick={() => sendInvitation("player", reservation.eventDetails._id, inviteEmail[reservation.eventDetails._id] || '')}>Send Invitation</button>
                   </div>
-                )}           
+                )}
               </li>
             ))}
           </ul>

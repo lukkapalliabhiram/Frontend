@@ -116,7 +116,6 @@ const VenueDetails = () => {
             <li>{timeSlot}</li>
           ))}
         </ul>
-
       </form>
     </div>
   );
