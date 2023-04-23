@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import gifler from 'gifler';
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import "./App.css";
 import Header from "./Header";
@@ -13,7 +14,8 @@ import ConfirmationPage from "./Components/ConfirmationPage";
 import Footer from "./footer";
 import { fetchVenues, fetchActivities, fetchPlayers } from "./api";
 import { fetchUser } from "./api1";
-import homepageImage from "./Homepage1.gif";
+import homepageStill from "./Homepage1.png";
+import homepageGif from "./Homepage1.gif";
 import Dashboard from './Dashboard';
 import LoginPage from './LoginPage';
 import ForgotPassword from './ForgotPassword';
@@ -152,12 +154,29 @@ function Home({ user }) {
 }
 
 function Dashboards() {
+  useEffect(() => {
+    const gif = document.getElementById("homepage-gif");
+    const still = document.getElementById("homepage-still");
+
+    const timer = setTimeout(() => {
+      gif.style.display = "none";
+      still.style.display = "block";
+    }, 3200); // Replace 3000 with the duration of your GIF in milliseconds
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, []);
+
   return (
     <div className="dashboard">
-      <img src={homepageImage} alt="Homepage" className="fullscreen-image"/>
+      <img src={homepageGif} alt="Homepage GIF" id="homepage-gif" className="fullscreen-image" />
+      <img src={homepageStill} alt="Homepage still" id="homepage-still" className="fullscreen-image" style={{ display: "none" }} />
     </div>
   );
 }
+
+
 
 
 
