@@ -20,7 +20,7 @@ const initialSearchValues = {
   playerAvailability: "",
 };
 
-const FilterSearch = ({ user, data }) => {
+const FilterSearch = ({ user }) => {
 
   const [searchValues, setSearchValues] = useState(initialSearchValues);
   const navigate = useNavigate();
@@ -28,7 +28,7 @@ const FilterSearch = ({ user, data }) => {
   const [filteredData, setFilteredData] = useState([]);
   const [venue, setvenue] = useState("");
   const [index, setindex] = useState("");
-  // const [data, setData] = useState([]);
+  const [data, setData] = useState([]);
   const [searchResults, setSearchResults] = useState([]);
 
   const isSameOrAfter = (dateA, dateB) => {
@@ -43,17 +43,8 @@ const FilterSearch = ({ user, data }) => {
   
   const onSearch = (searchValues, category) => {
     const currentDate = new Date();
+    console.log("new date", currentDate);
     currentDate.setHours(0, 0, 0, 0); // Set time to 00:00:00 to compare only the date part
-  
-    const isSameOrAfter = (dateA, dateB) => {
-      return (
-        dateA.getFullYear() > dateB.getFullYear() ||
-        (dateA.getFullYear() === dateB.getFullYear() && dateA.getMonth() > dateB.getMonth()) ||
-        (dateA.getFullYear() === dateB.getFullYear() &&
-          dateA.getMonth() === dateB.getMonth() &&
-          dateA.getDate() >= dateB.getDate())
-      );
-    };
   
     const filteredData = data.filter((item) => {
       const eventDate = new Date(item.date);
@@ -102,9 +93,9 @@ const FilterSearch = ({ user, data }) => {
       });
     };
   
-    // fetchVenues().then((venues) => setData(filterUpcomingEvents(venues)));
-    // fetchActivities().then((activities) => setData((prevData) => [...prevData, ...filterUpcomingEvents(activities)]));
-    // fetchPlayers().then((players) => setData((prevData) => [...prevData, ...filterUpcomingEvents(players)]));
+    fetchVenues().then((venues) => setData(filterUpcomingEvents(venues)));
+    fetchActivities().then((activities) => setData((prevData) => [...prevData, ...filterUpcomingEvents(activities)]));
+    fetchPlayers().then((players) => setData((prevData) => [...prevData, ...filterUpcomingEvents(players)]));
   
   }, []);
 

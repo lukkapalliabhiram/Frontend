@@ -146,7 +146,7 @@ function UpcomingReservations(user) {
           </>
         )}
 
-        <button onClick={() => setSelectedReservation(null)}>Close</button>
+        <button  onClick={() => setSelectedReservation(null)}>Close</button>
       </div>
     );
   }
@@ -173,9 +173,9 @@ function UpcomingReservations(user) {
                   })()}
                 </p>
                 <p><span className="Bold">Ratings:</span> {reservation.eventDetails.rating}</p>
-                <button onClick={() => handleReservationClick(reservation)}>View Details</button>
-                <button onClick={() => cancelReservation(reservation._id)}>Cancel Reservation</button>
-                <button onClick={toggleInviteForm}>Invite Friend</button>
+                <button className="button" onClick={() => handleReservationClick(reservation)}>View Details</button>
+                <button className="button" onClick={() => cancelReservation(reservation._id)}>Cancel Reservation</button>
+                <button className="button" onClick={toggleInviteForm}>Invite Friend</button>
                 {showInviteForm && (
                   <div className="invite-friend-form">
                     <label htmlFor="inviteEmail">Friend's Email:</label>
@@ -185,7 +185,7 @@ function UpcomingReservations(user) {
                       value={inviteEmail[reservation.eventDetails._id] || ''}
                       onChange={(e) => handleInviteEmailChange(reservation.eventDetails._id, e.target.value)}
                     />
-                    <button onClick={() => sendInvitation("event", reservation.eventDetails._id, inviteEmail[reservation.eventDetails._id] || '')}>Send Invitation</button>
+                    <button className="button" onClick={() => sendInvitation("event", reservation.eventDetails._id, inviteEmail[reservation.eventDetails._id] || '')}>Send Invitation</button>
                   </div>
                 )}
               </li>
@@ -212,9 +212,9 @@ function UpcomingReservations(user) {
                   })()}
                 </p>
                 <p><span className="Bold">Ratings:</span> {reservation.eventDetails.rating}</p>
-                <button onClick={() => handleReservationClick(reservation)}>View Details</button>
-                <button onClick={() => cancelReservation(reservation._id)}>Cancel Reservation</button>
-                <button onClick={toggleInviteForm}>Invite Friend</button>
+                <button className="button" onClick={() => handleReservationClick(reservation)}>View Details</button>
+                <button className="button" onClick={() => cancelReservation(reservation._id)}>Cancel Reservation</button>
+                <button className="button" onClick={toggleInviteForm}>Invite Friend</button>
                 {showInviteForm && (
                   <div className="invite-friend-form">
                     <label htmlFor="inviteEmail">Friend's Email:</label>
@@ -224,7 +224,7 @@ function UpcomingReservations(user) {
                       value={inviteEmail[reservation.eventDetails._id] || ''}
                       onChange={(e) => handleInviteEmailChange(reservation.eventDetails._id, e.target.value)}
                     />
-                    <button onClick={() => sendInvitation("activity", reservation.eventDetails._id, inviteEmail[reservation.eventDetails._id] || '')}>Send Invitation</button>
+                    <button className="button" onClick={() => sendInvitation("activity", reservation.eventDetails._id, inviteEmail[reservation.eventDetails._id] || '')}>Send Invitation</button>
                   </div>
                 )}
               </li>
@@ -240,9 +240,9 @@ function UpcomingReservations(user) {
               <li key={index}>
                 <h4>{reservation.eventDetails.playerSportActivity}</h4>
                 <p>{reservation.eventDetails.date?.split('T')[0]} at {reservation.eventDetails?.date?.split('T')[0]}</p>
-                <button onClick={() => handleReservationClick(reservation)}>View Details</button>
-                <button onClick={() => cancelReservation(reservation._id)}>Cancel Reservation</button>
-                <button onClick={toggleInviteForm}>Invite Friend</button>
+                <button className="button" onClick={() => handleReservationClick(reservation)}>View Details</button>
+                <button className="button" onClick={() => cancelReservation(reservation._id)}>Cancel Reservation</button>
+                <button className="button" onClick={toggleInviteForm}>Invite Friend</button>
                 {showInviteForm && (
                   <div className="invite-friend-form">
                     <label htmlFor="inviteEmail">Friend's Email:</label>
@@ -253,7 +253,7 @@ function UpcomingReservations(user) {
                       onChange={(e) => handleInviteEmailChange(reservation.eventDetails._id, e.target.value)}
                     />
 
-                    <button onClick={() => sendInvitation("player", reservation.eventDetails._id, inviteEmail[reservation.eventDetails._id] || '')}>Send Invitation</button>
+                    <button className="button" onClick={() => sendInvitation("player", reservation.eventDetails._id, inviteEmail[reservation.eventDetails._id] || '')}>Send Invitation</button>
                   </div>
                 )}
               </li>

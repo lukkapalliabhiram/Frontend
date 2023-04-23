@@ -463,6 +463,33 @@ main {
   color: #0062cc;
 }
 
+/* App.css */
+
+.button {
+  background-color: var(--background-color);
+  border: none;
+  color: var(--text-color);
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition-duration: 0.4s;
+  border: 2px solid var(--text-color);
+}
+
+.button:hover {
+  background-color: var(--text-color);
+  color: var(--background-color);
+}
+
+.button:active {
+  background-color: var(--background-color);
+}
+
 
 .reservation-details-popup {
   position: fixed;
