@@ -108,8 +108,8 @@ const Header = ({ user }) => {
     <div className="header">
       <header>
         <div className="logo">
-          <img src="https://via.placeholder.com/50" alt="Logo" />
-          <h1>Event Management System</h1>
+          {/* <img src="https://via.placeholder.com/50" alt="Logo" /> */}
+          <h1>HanabiYuga Event Management System</h1>
         </div>
         <nav>
           <ul>

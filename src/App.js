@@ -13,6 +13,7 @@ import ConfirmationPage from "./Components/ConfirmationPage";
 import Footer from "./footer";
 import { fetchVenues, fetchActivities, fetchPlayers } from "./api";
 import { fetchUser } from "./api1";
+import homepageImage from "./Homepage1.gif";
 import Dashboard from './Dashboard';
 import LoginPage from './LoginPage';
 import ForgotPassword from './ForgotPassword';
@@ -30,6 +31,7 @@ import VenueDetails from "./Components/venue_details";
 import VenueDetails2 from "./Components/venue_details2";
 import VenueDetails3 from "./Components/venue_details3";
 const cookies = new Cookies();
+
 const stripePromise = loadStripe("pk_test_51Mn4LdAFfsqlcVQEkmO8NnDi3KWVr6RJ6h225510JcZVN1RbId6WfSFOpaL19Txv8FKm1dCz6S11qnnzQCZzud0A00ArZsNo0T");
 
 
@@ -101,7 +103,7 @@ function App() {
         )} />
         <Route path="/payments/:playerIndex" element={<PaymentsPage />} />
         <Route path="/confirmation/:venueIndex" element={<ConfirmationPage />} />
-        <Route path="/my_reservations" element={<Reservation user={user} />} />
+        <Route path="/my_reservations" element={<Home  user={user} />} />
         <Route path="/invitation/venue/:venueId" element={<VenueDetails />} />
         <Route path="/invitation/activity/:venueId" element={<VenueDetails2 />} />
         <Route path="/invitation/player/:venueId" element={<VenueDetails3 />} />
@@ -124,7 +126,7 @@ function AppRoutes(clientSecret, options, data, handleFilterSearch) {
       {!shouldHideHeader && <Header user={user} />}
       <Routes>
         <Route path="/login" element={<Login />} />
-        <Route path="/dashboard" element={<Home data={data} user={user} />} />
+        <Route path="/dashboard" element={<Dashboards />} />
         <Route path="/" element={<Dashboard />} />
         <Route path="/ForgotPassword" element={<ForgotPassword />} />
         <Route path="/ResetPassword" element={<ResetPassword />} />
@@ -148,6 +150,16 @@ function Home({ user }) {
     </main>
   );
 }
+
+function Dashboards() {
+  return (
+    <div className="dashboard">
+      <img src={homepageImage} alt="Homepage" className="fullscreen-image"/>
+    </div>
+  );
+}
+
+
 
 
 function Login({ data, reservations }) {
