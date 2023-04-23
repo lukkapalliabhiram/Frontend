@@ -199,7 +199,7 @@ function Reservation(user) {
                     <option value="5">5</option>
                   </select>
                 </label>
-                <button onClick={() => handleReservationClick(reservation)}>View Details</button>              </li>
+                <button className="button" onClick={() => handleReservationClick(reservation)}>View Details</button>              </li>
             ))}
           </ul>
         </>
@@ -237,7 +237,7 @@ function Reservation(user) {
                     <option value="5">5</option>
                   </select>
                 </label>
-                <button onClick={() => handleReservationClick(reservation)}>View Details</button>              </li>
+                <button className="button" onClick={() => handleReservationClick(reservation)}>View Details</button>              </li>
             ))}
           </ul>
         </>
@@ -250,7 +250,7 @@ function Reservation(user) {
               <li key={index}>
                 <h4>{reservation.eventDetails.playerSportActivity}</h4>
                 <p>{reservation.eventDetails.date?.split('T')[0]} at {reservation.eventDetails?.date?.split('T')[0]}</p>
-                <button onClick={() => handleReservationClick(reservation)}>View Details</button>              </li>
+                <button className="button" onClick={() => handleReservationClick(reservation)}>View Details</button>              </li>
             ))}
           </ul>
         </>
