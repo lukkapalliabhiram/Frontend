@@ -130,13 +130,13 @@ const ProfileButton = ({ user, onEditProfileClick, onLogoutClick }) => {
               <span id="mobileNumber" style={profileStyles.span}>{user.mobileNumber}</span>
             </div> */}
           </div>
-          {/* <button
+          <button
             className="edit-profile"
             onClick={handleEditProfileClick}
             style={profileStyles.button}
           >
             Edit Profile
-          </button> */}
+          </button>
           <button className="logout" onClick={onLogoutClick} style={profileStyles.button}>
             Logout
           </button>
@@ -324,9 +324,6 @@ const Header = ({ user }) => {
                 <Link to="/my_activities" style={headerStyles.navA}>My Activities</Link>
               </li>
             )}
-            <li>
-              <Link to="/chat">Chat</Link>
-            </li>
             <li style={headerStyles.navLi}>
               <ProfileButton
                 user={user}
