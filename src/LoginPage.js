@@ -7,6 +7,7 @@ import { GoogleLogin } from '@react-oauth/google';
 import jwt_decode from "jwt-decode";
 import { Cookies } from 'react-cookie';
 import { useNavigate } from 'react-router-dom';
+import "./LoginPage.css";
 
 function LoginPage() {
   const cookies = new Cookies();
@@ -21,6 +22,7 @@ function LoginPage() {
     setColor(color)
     setIsOpen(true);
   };
+  
 
   const closeModal = () => {
     setIsOpen(false);
@@ -113,9 +115,7 @@ function LoginPage() {
       if(response.profile){
         const expires = new Date(Date.now() + 1 * 1 * 60 * 60 * 1000);
         cookies.set('session', response.profile, { expires });
-        setTimeout(() => {
-          window.location.replace('/');
-        }, 3000);
+        window.location.replace('/');
       }
     }
   }
@@ -131,9 +131,7 @@ function LoginPage() {
       console.log("Data returned!");
       console.log(response);            
       openModal(response.message, response.success);  
-      setTimeout(() => {
-        window.location.replace('/login');
-      }, 3000);
+      window.location.replace('/login');
     }
   }
 
@@ -177,11 +175,39 @@ function LoginPage() {
   return (
     <>
     <div className="wrapper">
-
+      <style>
+        {`
+          *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat';
+          }
+          html,body{
+            /* display: grid;
+            height: 100%;
+            width: 100%;
+            place-items: center;
+            background: -webkit-linear-gradient(left, #003366,#004080,#0059b3
+          , #0073e6); */
+            display: flex;
+            padding: 0;
+            margin: 0;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100vh;
+            /* background-color:rgb(52, 86, 130);*/
+            background-size: cover;
+          }
+          input[type="radio"]{
+            display: none;
+          }
+        `}
+      </style>
     {isOpen && <Modal isOpen={isOpen} onClose={closeModal} message={message} isSuccess={isSuccess} /> }
       <div className="title-text">
         <div className={`title ${slide}`}>HanabiYuga Welcomes You</div>
-        <div className={`title ${slide === 'login' ? 'signup' : 'login'}`}>Signup Form</div>
       </div>
       <div className="form-container">
         <div className="slide-controls">
@@ -264,7 +290,7 @@ function LoginPage() {
             <br />
             <div>
               <center>
-                <ReCAPTCHA sitekey="6LdVwmolAAAAAFL88TaBKjEJ4Wxy8KTyau82LX1B" onChange={onChange} onLoad={onLoad} ref={captchaRef}/>
+                <ReCAPTCHA sitekey="6LdI8KckAAAAABmOXJEQHkyWpn2GlW6XzlcYoPyd" onChange={onChange} onLoad={onLoad} ref={captchaRef}/>
               </center>
             </div>
             <div className="field btn">

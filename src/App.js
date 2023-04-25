@@ -1,11 +1,12 @@
-import { useState, useEffect, useRef } from "react";
-import gifler from 'gifler';
+import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import "./App.css";
 import Header from "./Header";
 import Reservation from "./Components/reservation_history";
 import UpReservation from "./Components/upcoming_reservation";
 import FilterSearch from "./Components/Filter_Search";
+import Venues from "./Components/OwnerVenues.js";
+import Activities from "./Components/OwnerActivities.js";
 import PaymentsPage from "./Components/PaymentPage";
 import BookingPage from "./Components/booking_page";
 import ActivityDetails from "./Components/Activity_details";
@@ -94,6 +95,8 @@ function App() {
                 nickname={user.name}
             />
         </div>} />
+        <Route path="/my_venues" element={<Venues user={user} />} />
+        <Route path="/my_activities" element={<Activities user={user} />} />
         <Route path="/book_venue/:venueIndex" element={<BookingPage data={data} user={user} />} />
         <Route path="/activity_details/:activityIndex" element={<ActivityDetails data={data} />} />
         <Route path="/player_details/:playerIndex" element={<PlayerDetailsPage data={data} />} />
@@ -104,7 +107,7 @@ function App() {
           </Elements>
         )} />
         <Route path="/payments/:playerIndex" element={<PaymentsPage />} />
-        <Route path="/confirmation/:venueIndex" element={<ConfirmationPage />} />
+        <Route path="/confirmation/:venueIndex" element={<ConfirmationPage user={user}/>} />
         <Route path="/my_reservations" element={<Home  user={user} />} />
         <Route path="/invitation/venue/:venueId" element={<VenueDetails />} />
         <Route path="/invitation/activity/:venueId" element={<VenueDetails2 />} />

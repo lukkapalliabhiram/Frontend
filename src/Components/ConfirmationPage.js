@@ -1,7 +1,33 @@
 import { useLocation } from 'react-router-dom';
+import { useEffect } from "react";
 
-function ConfirmationPage() {
+// Add this import at the top of your file
+import axios from "axios";
+
+
+
+
+function ConfirmationPage(user) {
+
   const { venue,bookingTime, paymentMethod } = useLocation().state;
+
+  async function sendConfirmationEmail(user, venue, bookingTime) {
+    console.log(user.user.email)
+    try {
+      await axios.post("https://backend-4gbl.onrender.com/send-confirmation-email", {
+        userEmail: user.user.email,
+        bookingTime,
+      });
+      console.log("Email sent successfully");
+    } catch (error) {
+      console.error("Error sending confirmation email:", error);
+    }
+  }
+
+  useEffect(() => {
+    console.log(user)
+    sendConfirmationEmail(user, venue, bookingTime);
+  }, [user, venue, bookingTime]);
 
   return (
     <div className="booking-page">
