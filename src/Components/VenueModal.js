@@ -5,7 +5,6 @@ import { server_URL, imgURL } from '../keys';
 import { Toast, ToastContainer } from 'react-bootstrap';
 import TimePicker from 'react-bootstrap-time-picker';
 import DatePicker from "react-datepicker";
-import fileSaver from "file-saver";
 import "react-datepicker/dist/react-datepicker.css";
 
 
