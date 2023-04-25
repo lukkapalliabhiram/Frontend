@@ -40,31 +40,10 @@ var props = {
 
     const handleImageUpload = async (event) => {
         event.preventDefault();
-        const file = event.target.files[0];
-        const name = file.name;    
-        const reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onload = () => {
-            setImageURL(reader.result);
-            setFileName(name);
-        };
-        const formData = new FormData();
-        formData.append('image', file);
-        formData.append('name', name);
-        fetch(server_URL+'/api/uploadImage', {
-        method: 'POST',
-        body: formData
-        })
-        .then(async response => {
-            const jsonData = await response.json()
-            console.log(jsonData);
-            setShowToast(true);
-            setShowMessage(jsonData.message);
-        })
-        .catch(error => {
-            console.log(error);
-        });
-
+        const link = prompt("Enter image URL link here");
+        console.log(link);
+        setImageURL(link);
+        setFileName(link);
     };
 
 
@@ -146,34 +125,21 @@ var props = {
                 alert('End Time is not changed');
             }
             else{
-                const currentDate = new Date();
-                const startDateTime = new Date(currentDate);
-                const endDateTime = new Date(currentDate);
-
-                const [startHour, startMinute] = fromTime.split(":");
-                startDateTime.setHours(parseInt(startHour));
-                startDateTime.setMinutes(parseInt(startMinute));
-
-                const [endHour, endMinute] = toTime.split(":");
-                endDateTime.setHours(parseInt(endHour));
-                endDateTime.setMinutes(parseInt(endMinute));
-
-                if (startDateTime.getTime() > endDateTime.getTime()) {
-                    alert("Start time cannot be after end time");
-                } 
-                else if ( startDateTime.getHours() === 0 && startDateTime.getMinutes() === 0) {
-                    alert("Start time cannot be 12:00 AM");
-                }
-                else if ( startDateTime.getHours() === endDateTime.getHours() && startDateTime.getMinutes() ===  endDateTime.getMinutes()) {
-                    alert("Start Time cannot be same as End Time");
-                } 
-                else {                    
+                const ftime = document.getElementById('starttime').value;
+                console.log(ftime);
+                const endtime = document.getElementById('endtime').value;
+                console.log(endtime);
+                if (ftime < endtime) {
                     const trimmedInput = fromTime + '-' + toTime;
                     if (trimmedInput.length && !timeSlots.includes(trimmedInput)) {
                         setTimeSlots(prevState => [...prevState, trimmedInput]);
                         setFromTime();
                         setToTime();
                     }
+                } else if (ftime > endtime) {
+                    alert("Start time cannot be after end time");
+                } else {
+                    alert("Start Time cannot be same as End Time");
                 }
             }
         }
@@ -274,11 +240,11 @@ var props = {
                                     X
                                 </button>
                                 <img className={styles.cardImage} src={imageURL} alt="Activity"/>
-                                <div className={styles.uploadBtnContainer}>
+                                <div className={styles.uploadBtnContainer} onClick={handleImageUpload}>
                                     <label htmlFor="uploadImage" className={styles.uploadBtn}>
                                     Upload Image
                                     </label>
-                                    <input type="file" id="uploadImage" accept="image/*,.jpg,.jpeg,.png,.gif" onChange={handleImageUpload} style={{display: 'none'}} />
+                                    <input type="text" name="image" value={imageURL} id="uploadImage" style={{display: 'none'}} />
                                 </div>
                             </div>
                         </div>
