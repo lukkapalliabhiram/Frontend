@@ -328,7 +328,7 @@ const FilterSearch = ({ user }) => {
           />
           Search for sports activities
         </label>
-        <label>
+        {/* <label>
           <input
             type="radio"
             name="searchCategory"
@@ -337,7 +337,7 @@ const FilterSearch = ({ user }) => {
             onChange={handleCategoryChange}
           />
           Search for sports players
-        </label>
+        </label> */}
       </div>
       {searchCategory && (
         <form onSubmit={handleSearchSubmit} className="Buttons">
@@ -387,7 +387,6 @@ const FilterSearch = ({ user }) => {
                         <li>{timeSlot}</li>
                       ))}
                     </ul>
-                    index=item._id;
                     <div><strong>Ratings:</strong> {item.rating} <span className="star-ratings">{Array.from({ length: item.rating }, (_, i) => <i key={i} className="fas fa-star"></i>)}</span></div>
                     <button onClick={(e) => { handleBookingA(e, item, index) }} className="btn-book-online">Details</button>
                   </>
