@@ -324,6 +324,9 @@ const Header = ({ user }) => {
                 <Link to="/my_activities" style={headerStyles.navA}>My Activities</Link>
               </li>
             )}
+            <li>
+              <Link to="/chat">Chat</Link>
+            </li>
             <li style={headerStyles.navLi}>
               <ProfileButton
                 user={user}
