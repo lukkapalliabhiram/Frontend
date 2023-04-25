@@ -6,7 +6,6 @@ import { Toast, ToastContainer } from 'react-bootstrap';
 import TimePicker from 'react-bootstrap-time-picker';
 import DatePicker from "react-datepicker";
 import { Cookies } from 'react-cookie';
-import fileSaver from "file-saver";
 import "react-datepicker/dist/react-datepicker.css";
 const cookies = new Cookies();
 
