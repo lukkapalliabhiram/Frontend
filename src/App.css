@@ -279,7 +279,7 @@ body {
   /* css transitions */
   transition: transform 500ms cubic-bezier(1.000, 0.000, 0.000, 1.000);
   transform: translateX(0);
-  -webkit-backface-visibility: hidden;
+  /* -webkit-backface-visibility: hidden; */
 }
 
 .wrapper.section {
