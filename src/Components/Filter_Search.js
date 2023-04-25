@@ -328,7 +328,7 @@ const FilterSearch = ({ user }) => {
           />
           Search for sports activities
         </label>
-        {/* <label>
+        <label>
           <input
             type="radio"
             name="searchCategory"
@@ -337,7 +337,7 @@ const FilterSearch = ({ user }) => {
             onChange={handleCategoryChange}
           />
           Search for sports players
-        </label> */}
+        </label>
       </div>
       {searchCategory && (
         <form onSubmit={handleSearchSubmit} className="Buttons">
