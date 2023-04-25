@@ -324,7 +324,7 @@ const Header = ({ user }) => {
                 <Link to="/my_activities" style={headerStyles.navA}>My Activities</Link>
               </li>
             )}
-            <li>
+            <li style={headerStyles.navLi}>
               <Link to="/chat">Chat</Link>
             </li>
             <li style={headerStyles.navLi}>
