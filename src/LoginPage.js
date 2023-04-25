@@ -290,7 +290,7 @@ function LoginPage() {
             <br />
             <div>
               <center>
-                <ReCAPTCHA sitekey="6LdI8KckAAAAABmOXJEQHkyWpn2GlW6XzlcYoPyd" onChange={onChange} onLoad={onLoad} ref={captchaRef}/>
+                <ReCAPTCHA sitekey="6LcR_rUlAAAAAPMZVzzvZhTAopMjsxzIr8Spgg33" onChange={onChange} onLoad={onLoad} ref={captchaRef}/>
               </center>
             </div>
             <div className="field btn">
