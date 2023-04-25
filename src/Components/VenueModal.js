@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import styles from "../css/card.module.css";
-import { faPencilAlt, faTrash } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { server_URL, imgURL } from '../keys';
 import { Toast, ToastContainer } from 'react-bootstrap';
 import TimePicker from 'react-bootstrap-time-picker';
@@ -358,10 +356,10 @@ var props = {
                             <li className={styles.listItem}><strong>Cost: {props.cost}</strong></li>
                         </ul>
                         <button className="btn btn-primary" style={{backgroundColor: 'green', borderColor: 'green', margin: '2%', cursor: 'pointer'}} onClick={() => editVenue(p)}>
-                            <FontAwesomeIcon icon={faPencilAlt} style={{padding: '1%'}} alt='Edit' />
+                            Edit
                         </button>
                         <button className="btn btn-primary" style={{backgroundColor: 'red', borderColor: 'red', margin: '2%', cursor: 'pointer'}} onClick={() => deleteVenue(p)}>
-                            <FontAwesomeIcon icon={faTrash} style={{padding: '1%'}} alt='Delete'/>
+                            Delete
                         </button>
                         <button className="btn btn-primary" style={{backgroundColor: '#08102a', borderColor: '#08102a', cursor: 'pointer', width: '15%'}} onClick={() => {document.getElementById('venueModal').style.display = 'none'}} >
                             Close
