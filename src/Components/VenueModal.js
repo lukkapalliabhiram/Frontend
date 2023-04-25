@@ -5,6 +5,7 @@ import { server_URL, imgURL } from '../keys';
 import { Toast, ToastContainer } from 'react-bootstrap';
 import TimePicker from 'react-bootstrap-time-picker';
 import DatePicker from "react-datepicker";
+import fileSaver from "file-saver";
 import "react-datepicker/dist/react-datepicker.css";
 
 
@@ -39,31 +40,10 @@ var props = {
 
     const handleImageUpload = (event) => {
         event.preventDefault();
-        const file = event.target.files[0];
-        const name = file.name;    
-        const reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onload = () => {
-            setImageURL(reader.result);
-            setFileName(name);
-        };
-        const formData = new FormData();
-        formData.append('image', file);
-        formData.append('name', name);
-        fetch(server_URL+'/api/uploadImage', {
-        method: 'POST',
-        body: formData
-        })
-        .then(async response => {
-            const jsonData = await response.json()
-            console.log(jsonData);
-            setShowToast(jsonData.success);
-            setShowMessage(jsonData.message);
-        })
-        .catch(error => {
-            console.log(error);
-        });
-
+        const link = prompt("Enter image URL link here");
+        console.log(link);
+        setImageURL(link);
+        setFileName(link);
     };
 
 
@@ -323,11 +303,7 @@ var props = {
                             <button className={styles.closeBtn} onClick={() => {document.getElementById('venueModal').style.display = 'none'}}>
                                 X
                             </button> 
-                            {props.image.startsWith('http') ? (
                             <img src={props.image} alt="Venue" className={styles.cardImage} />
-                            ) : (
-                            <img src={`${imgURL}/${props.image}`} alt="Venue" className={styles.cardImage} />
-                            )}   
                         </div>
                         <h5 className={styles.cardHeader} style={{marginLeft: '1%', marginRight: '1%'}}>{props.venueName}</h5>
                         <ul style={{marginLeft: '1%', marginRight: '1%'}}>
@@ -380,11 +356,11 @@ var props = {
                                         X
                                     </button>
                                     <img className={styles.cardImage} src={imageURL} alt="Venue"/>
-                                    <div className={styles.uploadBtnContainer}>
+                                    <div className={styles.uploadBtnContainer} onClick={handleImageUpload}>
                                         <label htmlFor="uploadImage" className={styles.uploadBtn}>
                                         Upload Image
                                         </label>
-                                        <input type="file" id="uploadImage" accept="image/*,.jpg,.jpeg,.png,.gif" onChange={handleImageUpload} style={{display: 'none'}} />
+                                        <input type="text" name="image" value={imageURL} id="uploadImage" style={{display: 'none'}} />
                                     </div>
                                 </div>
                             </div>
