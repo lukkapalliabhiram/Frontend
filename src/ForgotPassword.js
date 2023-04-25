@@ -49,7 +49,7 @@ function ForgotPassword() {
   };
 
   return (
-    <div className="wrapper" id="section3">
+    <div className="wrapper" id="section3" style={{textAlign: "center", width: "80%", marginLeft: "10%", marginRight: "10%"}}>
       {isOpen && <Modal isOpen={isOpen} onClose={closeModal} message={message} isSuccess={isSuccess} /> }
       <div className="form form--login">
         <h1 className="alpha">Lost password?</h1>
